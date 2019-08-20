@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>C3NEIN</title>
+    <meta name="description" content="C3NEIN">
+    <meta name="viewport" content="width=device-width">
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        body {
+            padding-top: 60px;
+        }
+        @media (max-width: 980px) {
+            body {
+                padding-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                C3NEIN
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <form>
+                        <label for="person">Zur Person:</label>
+                        <div class="row" id="person">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Vorname" id="Vorname">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Nachname" id="Nachname">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <label for="gender">Geschlecht</label>
+                                    <select class="form-control" id="gender">
+                                        <option>-</option>
+                                        <option>Weiblich</option>
+                                        <option>Männlich</option>
+                                        <option>Divers</option>
+                                        <option>Nicht-binär</option>
+                                        <option>Fluid</option>
+                                        <option value="nein">Nein</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="stand">Ledig</label>
+                                    <select class="form-control" id="stand">
+                                        <option>-</option>
+                                        <option>Ja</option>
+                                        <option value="nein">Nein</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="size">Kleidungsgröße</label>
+                                    <select class="form-control" id="size">
+                                        <option>-</option>
+                                        <option>38</option>
+                                        <option>40</option>
+                                        <option>42</option>
+                                        <option>44</option>
+                                        <option>46</option>
+                                        <option>48</option>
+                                        <option>50</option>
+                                        <option value="nein">Nein</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr style="width: 100%;" />
+
+                        <div class="form-group">
+                            <label>Sie versuchen Ihre Mails möglichst zeitnah zu beantworten und können einen unordentlichen Posteingang nicht ertragen.</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mail" id="mail1" value="mail-yes">
+                                <label class="form-check-label" for="mail1">Ja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mail" id="mail2" value="mail2">
+                                <label class="form-check-label" for="mail1">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mail" id="mail3" value="mail-yes">
+                                <label class="form-check-label" for="mail3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mail" id="mail4" value="mail4">
+                                <label class="form-check-label" for="mail4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mail" id="mail5" value="nein">
+                                <label class="form-check-label" for="mail5">Nein</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Organisiert zu sein ist Ihnen wichtiger, als anpassungsfähig zu sein.</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="org" id="org1" value="org-yes">
+                                <label class="form-check-label" for="org1">Ja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="org" id="org2" value="org2">
+                                <label class="form-check-label" for="org1">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="org" id="org3" value="org-yes">
+                                <label class="form-check-label" for="org3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="org" id="org4" value="org4">
+                                <label class="form-check-label" for="org4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="org" id="org5" value="nein">
+                                <label class="form-check-label" for="org5">Nein</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Ich mag keine Unordnung - Ich räume gern auf.</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="auf" id="auf1" value="auf-yes">
+                                <label class="form-check-label" for="auf1">Ja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="auf" id="auf2" value="auf2">
+                                <label class="form-check-label" for="auf1">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="auf" id="auf3" value="auf-yes">
+                                <label class="form-check-label" for="auf3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="auf" id="auf4" value="auf4">
+                                <label class="form-check-label" for="auf4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="auf" id="auf5" value="nein">
+                                <label class="form-check-label" for="auf5">Nein</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Ich tendiere dazu, politische Kandidaten zu unterstützen, die Fortschritt und Reformen zum Ziel haben.</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="pol" id="pol1" value="pol-yes">
+                                <label class="form-check-label" for="pol1">Ja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="pol" id="pol2" value="pol2">
+                                <label class="form-check-label" for="pol1">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="pol" id="pol3" value="pol-yes">
+                                <label class="form-check-label" for="pol3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="pol" id="pol4" value="pol4">
+                                <label class="form-check-label" for="pol4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="pol" id="pol5" value="nein">
+                                <label class="form-check-label" for="pol5">Nein</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Ich befürchte das Schlimmste.</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="schlimm" id="schlimm1" value="schlimm-yes">
+                                <label class="form-check-label" for="schlimm1">Ja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="schlimm" id="schlimm2" value="schlimm2">
+                                <label class="form-check-label" for="schlimm1">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="schlimm" id="schlimm3" value="schlimm-yes">
+                                <label class="form-check-label" for="schlimm3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="schlimm" id="schlimm4" value="schlimm4">
+                                <label class="form-check-label" for="schlimm4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="schlimm" id="schlimm5" value="nein">
+                                <label class="form-check-label" for="schlimm5">Nein</label>
+                            </div>
+                        </div>
+
+                        <hr style="width: 100%;" />
+
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+                        Senden
+                        </button>
+                    </form>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Einverständniserklärung</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="">
+                                    </div> Bitte bestätigen Sie, dass sie die AGBs und Datenschutzerklärungen nicht gelesen haben.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ja</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#send">Nein</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="send" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ablehnung</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Wollen sie das Formular wirklich nicht absenden?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ja</button>
+                                    <button type="button" class="btn btn-primary" onclick="validate()">Nein</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="response" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Ablehnung</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="validBar"></div>
+                                    </div>
+                                    <div id="validNum"></div> Angaben enthalten Fehler.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+        <script>
+            
+            function validate() {
+                let form_elements = ['#Vorname', '#Nachname', '#gender', '#stand', '#size'];
+                let invalid = 10;
+                let form = $("form").serializeArray();
+                form.forEach(function(entry) {
+                    if (entry.value === 'nein') {
+                        invalid--;    
+                    }
+                });
+
+                form_elements.forEach(function(element) {
+                    if($(element).val().toLowerCase() === 'nein'){
+                        invalid--;
+                    }
+                });
+                document.getElementById("validNum").innerHTML = invalid;
+                document.getElementById("validBar").setAttribute('aria-valuenow', 10/invalid*100);
+                $('#response').modal('show');
+            }
+
+        </script>
+    </div>
+</p>
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+Passwort enthält nicht NEIN
+Passwort enthält andere Buchstaben als N E I N
