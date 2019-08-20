@@ -23,7 +23,8 @@
 
     <div class="container">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
+                <img src="nein.png"><br>
                 C3NEIN
             </div>
             <div class="card-body">
@@ -212,7 +213,7 @@
 
                         <hr style="width: 100%;" />
 
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 100%;">
                         Senden
                         </button>
                     </form>
@@ -263,9 +264,9 @@
                     </div>
                     
                     <!-- Modal -->
-                    <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="response" aria-hidden="true">
+                    <div class="modal fade" id="response" tabindex="-1" role="dialog" aria-labelledby="response" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content text-white bg-danger">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Ablehnung</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -276,7 +277,18 @@
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="validBar"></div>
                                     </div>
-                                    <div id="validNum"></div> Angaben enthalten Fehler.
+                                    <div id="validNum" style="display: inline;"></div> Angaben enthalten Fehler.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content text-white bg-success">
+                                <div class="modal-body">
+                                    Danke für Ihre Teilnahme an dieser Umfrage.
                                 </div>
                             </div>
                         </div>
@@ -300,9 +312,21 @@
                         invalid--;
                     }
                 });
-                document.getElementById("validNum").innerHTML = invalid;
-                document.getElementById("validBar").setAttribute('aria-valuenow', 10/invalid*100);
-                $('#response').modal('show');
+
+                if (invalid === 0) {
+                    $('#exampleModal').modal('hide');
+                    $('#send').modal('hide');
+                    $('#success').modal('show');
+                    setTimeout(function(){ location.reload(); }, 5000);
+                } else {
+                    let percentage = (10-invalid)*10;
+                    $('#validNum').html(invalid);
+                    $('#validBar').attr('aria-valuenow', percentage);
+                    $('#validBar').attr('style','width:'+Number(percentage)+'%');
+                    $('#exampleModal').modal('hide');
+                    $('#send').modal('hide');
+                    $('#response').modal('show');
+                }
             }
 
         </script>
@@ -313,9 +337,3 @@
 
 </body>
 </html>
-
-
-
-
-Passwort enthält nicht NEIN
-Passwort enthält andere Buchstaben als N E I N
