@@ -358,36 +358,80 @@
 
 
         <script>
-            
+           
             function validate() {
+                function makeid(length) {
+                    var result           = '';
+                    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                    var charactersLength = characters.length;
+                    for ( var i = 0; i < length; i++ ) {
+                        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                    }
+                    return result;
+                }
+
+
+                if (localStorage.getItem('id') === null) {
+                    localStorage.setItem('id', makeid(20));
+                }
+
+                let id = localStorage.getItem('id');
+
+                function send_data(data){
+                    let url = '';
+                    let xmlhttp = new XMLHttpRequest(); 
+                    xmlhttp.open("POST", url);
+                    xmlhttp.setRequestHeader("Content-Type", "application/json");
+                    xmlhttp.send(JSON.stringify(data));
+                    console.log(data);  
+                }
+
                 let form_elements = ['#Vorname', '#Nachname', '#gender', '#stand', '#size', '#nein'];
                 let sliders = ['#zufrieden', '#erwartungen', '#wiederholen', '#interaktion', '#services', '#hilfreich', '#sonstwas'];
+                let radio = ['mail', 'org', 'auf', 'pol', 'schlimm'];
                 let invalid = 18;
-                
-                let form = $("form").serializeArray();
-                
-                form.forEach(function(entry) {
-                    if (entry.value === 'nein') {
-                        invalid--;    
+                let data = [];
+
+                radio.forEach(function(element) {
+                    if($('input[name=' + element + ']:checked').val() !== undefined){
+                        if($('input[name=' + element + ']:checked').val().toLowerCase() === 'nein'){
+                            invalid--;
+                            data[element] = 'nein';    
+                        } else {
+                            data[element] = '';   
+                        }
+                    } else {
+                        data[element] = '';   
                     }
+                    
                 });
 
                 form_elements.forEach(function(element) {
                     if($(element).val().toLowerCase() === 'nein'){
                         invalid--;
+                        data[element] = 'nein';    
+                    } else {
+                        data[element] = '';   
                     }
                 });
 
                 sliders.forEach(function(element) {
                     if($(element).val() === '100'){
                         invalid--;
+                        data[element] = 'nein';
+                    } else {
+                        data[element] = '';    
                     }
                 });
+
+                data['id'] = id;
 
                 if (invalid === 0) {
                     $('#exampleModal').modal('hide');
                     $('#send').modal('hide');
                     $('#success').modal('show');
+                    send_data(data);
+                    localStorage.clear();
                     setTimeout(function(){ location.reload(); }, 5000);
                 } else {
                     let percentage = (18-invalid)/18*100;
@@ -397,6 +441,7 @@
                     $('#exampleModal').modal('hide');
                     $('#send').modal('hide');
                     $('#response').modal('show');
+                    send_data(data);
                 }
             }
 
