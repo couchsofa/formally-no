@@ -88,6 +88,68 @@
 
                         <hr style="width: 100%;" />
 
+
+
+
+                        <div class="form-group">
+                            <label for="zufrieden">Sind Sie zufrieden mit der Arbeit von C3NEIN?</label> <br>
+                            <label for="zufrieden" class="float-left">Ja</label>
+                            <label for="zufrieden" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="zufrieden" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="erwartungen">Konnten wir Ihren Erwartungen gerecht werden?</label> <br>
+                            <label for="erwartungen" class="float-left">Ja</label>
+                            <label for="erwartungen" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="erwartungen" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wiederholen">Wie wahrscheinlich ist es, dass Sie unseren Dienst weiterhin nutzen?</label> <br>
+                            <label for="wiederholen" class="float-left">Sehr</label>
+                            <label for="wiederholen" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="wiederholen" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interaktion">Wie würden Sie ihre Interaktion mit C3NEIN bewerten?</label> <br>
+                            <label for="interaktion" class="float-left">5/7</label>
+                            <label for="interaktion" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="interaktion" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="services">Kennen Sie auch schon unsere anderen Services?</label> <br>
+                            <label for="services" class="float-left">Ja</label>
+                            <label for="services" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="services" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hilfreich">Wie hilfreich fanden sie dieses Formular?</label> <br>
+                            <label for="hilfreich" class="float-left">Sehr</label>
+                            <label for="hilfreich" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="hilfreich" min="0" max="100" value="50" step="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nein">Nein?</label> <br>
+                            <input type="text" class="form-control" placeholder="Nein" id="nein">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sonstwas">Können wir sonst noch etwas tun, um Ihre Zufriedenheit mit unserem Leistungsangebot zu verbessern?</label> <br>
+                            <label for="sonstwas" class="float-left">Sehr</label>
+                            <label for="sonstwas" class="float-right">Nein</label>
+                            <input type="range" class="form-control-range" id="sonstwas" min="0" max="100" value="50" step="1">
+                        </div>
+
+
+
+
+                        <hr style="width: 100%;" />
+
                         <div class="form-group">
                             <label>Sie versuchen Ihre Mails möglichst zeitnah zu beantworten und können einen unordentlichen Posteingang nicht ertragen.</label><br>
                             <div class="form-check form-check-inline">
@@ -298,9 +360,12 @@
         <script>
             
             function validate() {
-                let form_elements = ['#Vorname', '#Nachname', '#gender', '#stand', '#size'];
-                let invalid = 10;
+                let form_elements = ['#Vorname', '#Nachname', '#gender', '#stand', '#size', '#nein'];
+                let sliders = ['#zufrieden', '#erwartungen', '#wiederholen', '#interaktion', '#services', '#hilfreich', '#sonstwas'];
+                let invalid = 18;
+                
                 let form = $("form").serializeArray();
+                
                 form.forEach(function(entry) {
                     if (entry.value === 'nein') {
                         invalid--;    
@@ -313,13 +378,19 @@
                     }
                 });
 
+                sliders.forEach(function(element) {
+                    if($(element).val() === '100'){
+                        invalid--;
+                    }
+                });
+
                 if (invalid === 0) {
                     $('#exampleModal').modal('hide');
                     $('#send').modal('hide');
                     $('#success').modal('show');
                     setTimeout(function(){ location.reload(); }, 5000);
                 } else {
-                    let percentage = (10-invalid)*10;
+                    let percentage = (18-invalid)/18*100;
                     $('#validNum').html(invalid);
                     $('#validBar').attr('aria-valuenow', percentage);
                     $('#validBar').attr('style','width:'+Number(percentage)+'%');
