@@ -383,25 +383,26 @@
                     xmlhttp.open("POST", url);
                     xmlhttp.setRequestHeader("Content-Type", "application/json");
                     xmlhttp.send(JSON.stringify(data));
-                    console.log(data);  
+                    console.log(JSON.stringify(data));  
                 }
 
                 let form_elements = ['#Vorname', '#Nachname', '#gender', '#stand', '#size', '#nein'];
                 let sliders = ['#zufrieden', '#erwartungen', '#wiederholen', '#interaktion', '#services', '#hilfreich', '#sonstwas'];
                 let radio = ['mail', 'org', 'auf', 'pol', 'schlimm'];
                 let invalid = 18;
-                let data = [];
+                let data = {};
+                data.questions = {};
 
                 radio.forEach(function(element) {
                     if($('input[name=' + element + ']:checked').val() !== undefined){
                         if($('input[name=' + element + ']:checked').val().toLowerCase() === 'nein'){
                             invalid--;
-                            data[element] = 'nein';    
+                            data.questions[element] = 'nein';
                         } else {
-                            data[element] = '';   
+                            data.questions[element] = '';   
                         }
                     } else {
-                        data[element] = '';   
+                        data.questions[element] = '';   
                     }
                     
                 });
@@ -409,18 +410,18 @@
                 form_elements.forEach(function(element) {
                     if($(element).val().toLowerCase() === 'nein'){
                         invalid--;
-                        data[element] = 'nein';    
+                        data.questions[element.replace(/#/,'')] = 'nein';    
                     } else {
-                        data[element] = '';   
+                        data.questions[element.replace(/#/,'')] = '';   
                     }
                 });
 
                 sliders.forEach(function(element) {
                     if($(element).val() === '100'){
                         invalid--;
-                        data[element] = 'nein';
+                        data.questions[element.replace(/#/,'')] = 'nein';
                     } else {
-                        data[element] = '';    
+                        data.questions[element.replace(/#/,'')] = '';    
                     }
                 });
 
